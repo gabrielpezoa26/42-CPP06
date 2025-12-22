@@ -27,8 +27,18 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-run: all
-	./$(NAME)
+
+#for debugging
+char:all
+	./$(NAME) c
+int:all
+	./$(NAME) 42
+float:all
+	./$(NAME) 0.0f
+double:all
+	./$(NAME) 4.2
+
+
 
 val: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)

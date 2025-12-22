@@ -6,14 +6,13 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/19 20:22:48 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:04:08 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALAR_CONVERTER
-#define SCALAR_CONVERTER
+#ifndef SCALAR_CONVERTER_HPP
+#define SCALAR_CONVERTER_HPP
 
-#include <iostream>
 
 #define GREEN "\033[32m"
 #define RED "\033[31m"
@@ -24,15 +23,29 @@
 
 #define DEBUG false
 
+#include <iostream>
+
 class ScalarConverter
 {
-	private:
-
-
 	public:
 		/* ------- Canonical form -------*/
 		ScalarConverter();
-		~ScalarConverter();
+		ScalarConverter(const ScalarConverter& other);
+		ScalarConverter &operator=(const ScalarConverter &other);
+		virtual ~ScalarConverter();
+
+
+	
+		/* ------- special methods -------*/
+		static void convert(std::string to_convert);
+		static std::string getType(std::string to_detect);
+
+
+		/* ------- auxiliary methods -------*/
+		static bool isChar(std::string str);
+		// static bool isInteger(std::string str);
+		// static bool isFloat(std::string str);
+		// static bool isDouble(std::string str);
 
 	
 };

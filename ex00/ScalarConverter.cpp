@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/19 21:39:18 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/22 14:05:51 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,83 @@
 ScalarConverter::ScalarConverter()
 {
 	if (DEBUG)
-		printDebug("Scalar-> Default constructor called");
+		printDebug("ScalarConverter-> Default constructor called");
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& other)
+{
+	(void)other;
+	return ;
+}
+
+ScalarConverter	&ScalarConverter::operator=(const ScalarConverter& other)
+{
+	(void)other;
+	return (*this);
 }
 
 ScalarConverter::~ScalarConverter()
 {
 	if (DEBUG)
-		printDebug("Scalar-> Default destructor called");
+		printDebug("ScalarConverter-> Default destructor called");
 }
+
+
+
+
+/* ------- special methods -------*/
+void ScalarConverter::convert(std::string to_convert)
+{
+	if (DEBUG)
+		printDebug("ScalarConverter-> convert() method called");
+
+
+	std::string input_type;
+	input_type = getType(to_convert);
+	std::cout << input_type << std::endl;
+	// blablabla
+}
+
+std::string ScalarConverter::getType(std::string to_detect)
+{
+	if (DEBUG)
+		printDebug("ScalarConverter-> getType() method called");
+
+
+	std::string type;
+	if (isChar(to_detect))
+		type = "char";
+	// else if (isInteger(to_detect))
+	// 	type = "integer";
+	// else if (isFloat(to_detect))
+	// 	type = "float";
+	// else if (isDouble(to_detect))
+	// 	type = "double";
+	// else
+	// {
+	// 	log("vishhhhhhhhhhhhhh");
+	// }
+	return (type);
+}
+
+
+
+/* ------- auxiliary methods -------*/
+bool ScalarConverter::isChar(std::string str)
+{
+	if (isalpha(str[1]) == 0)
+		return true;
+	else
+		return false;
+}
+
+// bool ScalarConverter::isInteger(std::string str)
+// {
+// 	if (isdigit(str[1]) == 0)
+// 		return true;
+// 	else
+// 		return true;
+// }
 
 
 
