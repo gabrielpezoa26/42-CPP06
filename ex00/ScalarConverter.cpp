@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/22 14:05:51 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:35:23 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ void ScalarConverter::convert(std::string to_convert)
 
 
 	std::string input_type;
-	input_type = getType(to_convert);
+	input_type = getInputType(to_convert);
 	std::cout << input_type << std::endl;
 	// blablabla
 }
 
-std::string ScalarConverter::getType(std::string to_detect)
+std::string ScalarConverter::getInputType(std::string to_detect)
 {
 	if (DEBUG)
-		printDebug("ScalarConverter-> getType() method called");
+		printDebug("ScalarConverter-> getInputType() method called");
 
 
 	std::string type;
@@ -70,7 +70,7 @@ std::string ScalarConverter::getType(std::string to_detect)
 	// 	type = "double";
 	// else
 	// {
-	// 	log("vishhhhhhhhhhhhhh");
+	// 	logColor("vishhhhhhhhhhhhhh", RED);
 	// }
 	return (type);
 }

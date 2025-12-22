@@ -2,6 +2,9 @@
 
 ex00:
 	-> aux methods
+		-> isInteger()
+		-> isFloat()
+		-> isDouble()
 
 links:
 	https://www.geeksforgeeks.org/cpp/type-conversion-in-c/

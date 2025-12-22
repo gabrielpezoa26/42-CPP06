@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/22 14:04:08 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:33:47 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class ScalarConverter
 	
 		/* ------- special methods -------*/
 		static void convert(std::string to_convert);
-		static std::string getType(std::string to_detect);
+		static std::string getInputType(std::string to_detect);
 
 
 		/* ------- auxiliary methods -------*/
