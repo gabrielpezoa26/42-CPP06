@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/22 16:35:23 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:14:22 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void ScalarConverter::convert(std::string to_convert)
 	// blablabla
 }
 
+
+
+/* ------- auxiliary methods -------*/
 std::string ScalarConverter::getInputType(std::string to_detect)
 {
 	if (DEBUG)
@@ -62,8 +65,8 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	std::string type;
 	if (isChar(to_detect))
 		type = "char";
-	// else if (isInteger(to_detect))
-	// 	type = "integer";
+	else if (isInteger(to_detect))
+		type = "integer";
 	// else if (isFloat(to_detect))
 	// 	type = "float";
 	// else if (isDouble(to_detect))
@@ -75,26 +78,54 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	return (type);
 }
 
-
-
-/* ------- auxiliary methods -------*/
 bool ScalarConverter::isChar(std::string str)
 {
-	if (isalpha(str[1]) == 0)
-		return true;
-	else
+	if (DEBUG)
+		printDebug("Scalar-> isChar() called");
+
+	if (str.length() > 1 || isdigit(str[0]) != 0 || isprint(str[0] != 0) || str.empty())
 		return false;
+	return true;
 }
 
-// bool ScalarConverter::isInteger(std::string str)
+/*
+	TODO:
+		edge cases INTMAX INTMIN
+		sinal sozinho ("+" ou "-")
+*/
+bool ScalarConverter::isInteger(std::string str)
+{
+	if (DEBUG)
+		printDebug("Scalar-> isInteger() called");
+
+	int size = str.length();
+	int i = 0;
+
+	if (str.empty() || (size == 1 && (str[0] == '+' || str[0] == '-')))
+		return false;
+	if (str[0] == '+' || str[0] == '-')
+		i++;
+	while(i < size)
+	{
+		if (!isdigit(str[i]))
+			return false;
+		i++;
+	}
+	return true;
+}
+
+// bool ScalarConverter::isFloat(std::string str)
 // {
-// 	if (isdigit(str[1]) == 0)
-// 		return true;
-// 	else
-// 		return true;
+// 	if (DEBUG)
+
+// 		printDebug("Scalar-> isFloat() called");
 // }
 
-
+// bool ScalarConverter::isDouble(std::string str)
+// {
+// 	if (DEBUG)
+// 		printDebug("Scalar-> isDouble() called");
+// }
 
 /* ------- Global Methods -------*/
 void log(std::string message)

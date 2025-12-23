@@ -1,6 +1,7 @@
 *.o
 .vscode/
 
+afazeres.txt
 
 #binaries
 convert

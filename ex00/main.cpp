@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:35 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/22 13:27:48 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:13:26 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		logColor("Invalid argument count :((", RED);
+		logColor("Error! Invalid argument count :((", RED);
 		return 1;
 	}
 	ScalarConverter::convert(av[1]);

@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/22 16:33:47 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:14:00 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,30 @@
 #define DEBUG false
 
 #include <iostream>
+#include <limits>
 
 class ScalarConverter
 {
-	public:
+	private:
+		/* ------- auxiliary methods -------*/
+		static std::string getInputType(std::string to_detect);
+		static bool isChar(std::string str);
+		static bool isInteger(std::string str);
+		// static bool isFloat(std::string str);
+		// static bool isDouble(std::string str);
+
+
 		/* ------- Canonical form -------*/
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
 		ScalarConverter &operator=(const ScalarConverter &other);
-		virtual ~ScalarConverter();
+		~ScalarConverter();
 
 
-	
-		/* ------- special methods -------*/
+
+	public:
+		/* ------- special method -------*/
 		static void convert(std::string to_convert);
-		static std::string getInputType(std::string to_detect);
-
-
-		/* ------- auxiliary methods -------*/
-		static bool isChar(std::string str);
-		// static bool isInteger(std::string str);
-		// static bool isFloat(std::string str);
-		// static bool isDouble(std::string str);
-
-	
 };
 
 /* ------- Global Methods -------*/
