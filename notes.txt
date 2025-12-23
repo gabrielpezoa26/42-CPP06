@@ -1,4 +1,22 @@
-22/12/25
+23/12/25
+
+
+isFloat()
+	-> verificar se eh pseudo-literal
+	-> termina com f
+	-> 1 sinal no começo
+	-> tudo dígitos e ponto decimal
+
+
+
+isDouble()
+	-> pseudo
+	-> ponto decimal e ausencia de f
+	-> 1 sinal no começo
+	-> ver se eh tudo dígito
+
+
+
 
 ex00:
 	-> aux methods

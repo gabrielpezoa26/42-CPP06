@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/23 16:14:22 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:47:35 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,49 +83,71 @@ bool ScalarConverter::isChar(std::string str)
 	if (DEBUG)
 		printDebug("Scalar-> isChar() called");
 
-	if (str.length() > 1 || isdigit(str[0]) != 0 || isprint(str[0] != 0) || str.empty())
+	if (str.length() != 1)
+		return false;
+	if(isdigit(str[0]))
+		return false;
+	if (!isprint(str[0]))
 		return false;
 	return true;
 }
 
-/*
-	TODO:
-		edge cases INTMAX INTMIN
-		sinal sozinho ("+" ou "-")
-*/
 bool ScalarConverter::isInteger(std::string str)
 {
 	if (DEBUG)
 		printDebug("Scalar-> isInteger() called");
 
-	int size = str.length();
-	int i = 0;
-
-	if (str.empty() || (size == 1 && (str[0] == '+' || str[0] == '-')))
+	if (str.empty())
 		return false;
+
+	int i = 0;
 	if (str[0] == '+' || str[0] == '-')
-		i++;
-	while(i < size)
 	{
-		if (!isdigit(str[i]))
+		if (str.length() == 1)
 			return false;
 		i++;
+	}
+	while (i < (int)str.length())
+	{
+		if (!std::isdigit(str[i]))
+			return false;
+		i++;
+	}
+	error_number = 0;
+	long value_in_long = 0;
+	value_in_long = std::strtol(str.c_str(), NULL, 10);
+	if (error_number == ERANGE)
+	{
+		if (DEBUG)
+			printDebug("overflow detected");
+
+		return false;
+	}
+	if (value_in_long > INT_MAX || value_in_long < INT_MIN)
+	{
+		if (DEBUG)
+			printDebug("out of 'int' ranges");
+		return false;
 	}
 	return true;
 }
 
-// bool ScalarConverter::isFloat(std::string str)
-// {
-// 	if (DEBUG)
+bool ScalarConverter::isFloat(std::string str)
+{
+	if (DEBUG)
+		printDebug("Scalar-> isFloat() called");
 
-// 		printDebug("Scalar-> isFloat() called");
-// }
+	std::cout << "DEBUG" << str << std::endl; //apagar dps
+	return true;
+}
 
 // bool ScalarConverter::isDouble(std::string str)
 // {
 // 	if (DEBUG)
 // 		printDebug("Scalar-> isDouble() called");
 // }
+
+
 
 /* ------- Global Methods -------*/
 void log(std::string message)
