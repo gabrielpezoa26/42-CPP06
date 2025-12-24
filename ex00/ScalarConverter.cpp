@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 16:20:26 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 17:48:18 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void ScalarConverter::convert(std::string to_convert)
 	std::string input_type;
 	input_type = getInputType(to_convert);
 	
-	mangoloko(input_type, to_convert);
+	convert_and_print(input_type, to_convert);
 }
 
 
 
-/* ------- auxiliary methods -------*/
+/* ------- "main" methods -------*/
 std::string ScalarConverter::getInputType(std::string to_detect)
 {
 	if (DEBUG)
@@ -74,57 +74,44 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	return (type);
 }
 
-void ScalarConverter::mangoloko(std::string input_type, std::string to_convert)
+void ScalarConverter::convert_and_print(std::string input_type, std::string to_convert)
 {
 	if (DEBUG)
-		printDebug("ScalarConverter-> mangoloko() method called");
+		printDebug("ScalarConverter-> convert_and_print() method called");
 
 	std::string types_array[5] = {"char", "int", "float", "double", "impossible"};
 	int i = 0;
-	while(i < 5)
+	for(i = 0; i < 5; i++)
 	{
-		if (types_array[i] == input_type)
+		if (types_array[i] == input_type) 
 			break;
-		i++;
 	}
-	std::cout << "DEBUG: type = " << input_type << std::endl;
+	std::cout << "DEBUG: type = " << input_type << '\n' << std::endl;
 	switch(i)
 	{
-		case 0:
-			handleChar(to_convert);
-			break;
-		case 1:
-			// handleInt(to_convert);
-			break;
-		case 2:
-			// handleFloat(to_convert);
-			break;
-		case 3:
-			// handleDouble(to_convert);
-			break;
-		case 4:
-			log("impossibleeeeeee");
-			// handle_impossible(to_convert);
-			break;
+		case 0: handleChar(to_convert); break;
+		case 1: handleInt(to_convert); break;
+		case 2: // handleFloat(to_convert); break;
+		case 3: // handleDouble(to_convert); break;
+		case 4: handle_impossible(); break;
 	}
 }
 
+
+/* ------- auxiliary methods -------*/
 bool ScalarConverter::isChar(std::string str)
 {
 	if (DEBUG)
 		printDebug("Scalar-> isChar() called");
 
-	if (str.length() != 1)
+	if (str.length() != 1 || isdigit(str[0]))
 		return false;
-	if(isdigit(str[0]))
-		return false;
-	if (!isascii(str[0]))
-		return false;
-	if (!isprint(str[0]) || str[0] == 32)
+	if (!isascii(str[0]) || !isprint(str[0]) || str[0] == 32)
 		return false;
 	return true;
 }
 
+// mayyyybe should refactor this
 bool ScalarConverter::isInteger(std::string str)
 {
 	if (DEBUG)
@@ -165,6 +152,7 @@ bool ScalarConverter::isInteger(std::string str)
 	return true;
 }
 
+// also maybe should refactor this
 bool ScalarConverter::isFloat(std::string str)
 {
 	if (DEBUG)
@@ -216,6 +204,7 @@ bool ScalarConverter::isFloat(std::string str)
 	return true;
 }
 
+// also should refactor this
 bool ScalarConverter::isDouble(std::string str)
 {
 	if (DEBUG)
@@ -272,7 +261,35 @@ void ScalarConverter::handleChar(std::string to_convert)
 
 	std::cout << "char: " << to_convert << std::endl;
 	std::cout << "int: " << static_cast<int>(to_convert[0]) << std::endl;
-	std::cout << "float: " << static_cast<float>(to_convert[0]) << ".0" << std::endl;
+	std::cout << "float: " << static_cast<float>(to_convert[0]) << ".0f" << std::endl;
 	std::cout << "double: " << static_cast<double>(to_convert[0]) << ".0" << std::endl;
 
+}
+
+void ScalarConverter::handleInt(std::string to_convert)
+{
+	if (DEBUG)
+		printDebug("handleInt() called");
+
+	int value_int = atoi(to_convert.c_str());
+	if (value_int < INT_MIN || value_int > INT_MAX)
+		std::cout << "char: " << "impossible" << std::endl;
+	if (isprint(static_cast<unsigned char>(value_int)))
+		std::cout << "char: " << static_cast<char>(value_int) << std::endl;
+	else
+		std::cout << "char: " << "not printable :(" << std::endl;
+	std::cout << "int: " << value_int << std::endl;
+	std::cout << "float: " << static_cast<float>(value_int) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(value_int) << ".0" << std::endl;
+}
+
+void ScalarConverter::handle_impossible()
+{
+	if (DEBUG)
+		printDebug("handle_impossible() called");
+
+	logColor("char: impossible", RED);
+	logColor("int: impossible", RED);
+	logColor("float: impossible", RED);
+	logColor("double: impossible", RED);
 }

@@ -4,10 +4,6 @@
 convert()
 
 	-> converter pro tipo real (42 em string vira 42 int)
-		->handleChar()
-			-> printar o char
-			-> conversao pra ascii
-		->handleInt()
 		->handleFloat()
 		->handleDouble()
 

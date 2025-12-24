@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.cpp                                          :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 00:42:43 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 17:21:34 by gcesar-n         ###   ########.fr       */
+/*   Created: 2025/12/24 17:18:20 by gcesar-n          #+#    #+#             */
+/*   Updated: 2025/12/24 17:19:02 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
 /* ------- global methods -------*/
-void log(std::string message)
-{
-	std::cout << message << std::endl;
-}
+void log(std::string message);
+void logColor(std::string message, std::string color);
+void printDebug(std::string debug_message);
 
-void logColor(std::string message, std::string color)
-{
-	std::cout << color << message << RESET << std::endl;
-}
 
-void printDebug(std::string debug_message)
-{
-	std::cout << PURPLE << debug_message << RESET << std::endl;
-}
+
+
+#endif
