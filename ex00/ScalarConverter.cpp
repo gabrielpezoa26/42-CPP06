@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 00:51:47 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 11:41:38 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void ScalarConverter::convert(std::string to_convert)
 
 	std::string input_type;
 	input_type = getInputType(to_convert);
-	std::cout << input_type << std::endl;
-	// blablabla
+	
+	mangoloko(input_type);
 }
 
 
@@ -65,7 +65,7 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	if (isChar(to_detect))
 		type = "char";
 	else if (isInteger(to_detect))
-		type = "integer";
+		type = "int";
 	else if (isFloat(to_detect))
 		type = "float";
 	else if (isDouble(to_detect))
@@ -73,6 +73,44 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	else
 		type = "impossible";
 	return (type);
+}
+
+void ScalarConverter::mangoloko(std::string input_type)
+{
+	if (DEBUG)
+		printDebug("ScalarConverter-> mangoloko() method called");
+
+	std::string types_array[5] = {"char", "int", "float", "double", "impossible"};
+	int i = 0;
+	while(i < 5)
+	{
+		if (types_array[i] == input_type)
+			break;
+		i++;
+	}
+	switch(i)
+	{
+		case 0:
+			log("charrrrrrrrrr");
+			// convert_char(to_convert);
+			break;
+		case 1:
+			log("intttttttt");
+			// convert_int(to_convert);
+			break;
+		case 2:
+			log("floatttttt");
+			// convert_float(to_convert);
+			break;
+		case 3:
+			log("doubleeeee");
+			// convert_double(to_convert);
+			break;
+		case 4:
+			log("impossibleeeeeee");
+			// handle_impossible(to_convert);
+			break;
+	}
 }
 
 bool ScalarConverter::isChar(std::string str)
@@ -137,7 +175,7 @@ bool ScalarConverter::isFloat(std::string str)
 	if (str.empty())
 		return false;
 
-	if (str == "-inff" || str == "+inff" || str == "nanf")
+	if (str == "-inff" || str == "+inff" || str == "nanf" || str == "inff")
 	{
 		log("DEBUG: float pseudo literal");
 		return true;
@@ -173,7 +211,7 @@ bool ScalarConverter::isFloat(std::string str)
 		if (isdigit(str[i]) == 0 && str[i] != '.' 
 			&& str[i] != 'f' && str[i] != '+' && str[i] != '-')
 		{
-			log("float()-> vishhh");
+			log("float()-> vishhh deu ruim");
 			return false;
 		}
 	}
@@ -188,7 +226,7 @@ bool ScalarConverter::isDouble(std::string str)
 	if (str.empty())
 		return false;
 
-	if (str == "-inf" || str == "+inf" || str == "nan")
+	if (str == "-inf" || str == "+inf" || str == "nan" || str == "inf")
 	{
 		log("DEBUG: double pseudo literal");
 		return true;
@@ -222,28 +260,9 @@ bool ScalarConverter::isDouble(std::string str)
 		if (isdigit(str[i]) == 0 && str[i] != '.'
 			&& str[i] != '+' && str[i] != '-')
 		{
-			log("double()-> vishhh");
+			log("double()-> vishhh deu ruim");
 			return false;
 		}
 	}
 	return true;
 }
-
-
-
-/* ------- Global Methods -------*/
-void log(std::string message)
-{
-	std::cout << message << std::endl;
-}
-
-void logColor(std::string message, std::string color)
-{
-	std::cout << color << message << RESET << std::endl;
-}
-
-void printDebug(std::string debug_message)
-{
-	std::cout << PURPLE << debug_message << RESET << std::endl;
-}
-

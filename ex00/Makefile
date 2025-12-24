@@ -1,5 +1,5 @@
 NAME = convert
-OBJECTS = objects/main.o objects/ScalarConverter.o
+OBJECTS = objects/main.o objects/ScalarConverter.o objects/utils.o
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -20,6 +20,10 @@ objects/main.o: main.cpp
 
 objects/ScalarConverter.o: ScalarConverter.cpp
 	$(CC) $(CFLAGS) -c ScalarConverter.cpp -o objects/ScalarConverter.o
+
+objects/utils.o: utils.cpp
+	$(CC) $(CFLAGS) -c utils.cpp -o objects/utils.o
+
 
 clean:
 	rm -rf $(OBJ_DIR)

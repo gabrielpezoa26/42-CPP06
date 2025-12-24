@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/23 23:47:58 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 11:38:39 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,18 @@ class ScalarConverter
 	private:
 		/* ------- auxiliary methods -------*/
 		static std::string getInputType(std::string to_detect);
+		static void mangoloko(std::string input_type);
+
 		static bool isChar(std::string str);
 		static bool isInteger(std::string str);
 		static bool isFloat(std::string str);
 		static bool isDouble(std::string str);
+
+		static bool convert_char(std::string to_convert);
+		static bool convert_int(std::string to_convert);
+		static bool convert_float(std::string to_convert);
+		static bool convert_double(std::string to_convert);
+		static bool handle_impossible(std::string to_convert);
 
 
 		/* ------- Canonical form -------*/
@@ -51,7 +59,7 @@ class ScalarConverter
 		static void convert(std::string to_convert);
 };
 
-/* ------- Global Methods -------*/
+/* ------- global methods -------*/
 void log(std::string message);
 void logColor(std::string message, std::string color);
 void printDebug(std::string debug_message);

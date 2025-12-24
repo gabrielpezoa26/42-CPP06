@@ -2,9 +2,9 @@
 
 
 convert()
-	-> tratar pseudos
 
 	-> converter pro tipo real (42 em string vira 42 int)
+	-> tratar pseudos
 
 
 
