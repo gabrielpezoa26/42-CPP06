@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/23 23:54:12 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 00:51:47 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	if (DEBUG)
 		printDebug("ScalarConverter-> getInputType() method called");
 
-
 	std::string type;
 	if (isChar(to_detect))
 		type = "char";
@@ -72,9 +71,7 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	else if (isDouble(to_detect))
 		type = "double";
 	else
-	{
-		logColor("DEBUG: vishhhhhhhhhhhhhh", RED);
-	}
+		type = "impossible";
 	return (type);
 }
 
@@ -87,7 +84,7 @@ bool ScalarConverter::isChar(std::string str)
 		return false;
 	if(isdigit(str[0]))
 		return false;
-	if (!isprint(str[0]))
+	if (!isprint(str[0]) || str[0] == 32)
 		return false;
 	return true;
 }
@@ -153,9 +150,17 @@ bool ScalarConverter::isFloat(std::string str)
 		i++;
 	}
 	int size = str.length();
+	int count = 0;
+	for(i = 0; i < size; i++)
+	{
+		if (str[i] == '+' || str[i] == '-')
+			count++;
+	}
+	if (count > 1)
+		return false;
 	if (str[size - 1] != 'f')
 		return false;
-	int count = 0;
+	count = 0;
 	for(int i = 0; i < size; i++)
 	{
 		if (str[i] == '.' || str[i] == 'f')
@@ -165,9 +170,10 @@ bool ScalarConverter::isFloat(std::string str)
 		return false;
 	for (i = 0; i < size; i++)
 	{
-		if (isdigit(str[i]) == 0 && str[i] != '.' && str[i] != 'f')
+		if (isdigit(str[i]) == 0 && str[i] != '.' 
+			&& str[i] != 'f' && str[i] != '+' && str[i] != '-')
 		{
-			log("vishhh");
+			log("float()-> vishhh");
 			return false;
 		}
 	}
@@ -194,8 +200,16 @@ bool ScalarConverter::isDouble(std::string str)
 			return false;
 		i++;
 	}
-	int count = 0;
 	int size = str.length();
+	int count = 0;
+	for(i = 0; i < size; i++)
+	{
+		if (str[i] == '+' || str[i] == '-')
+			count++;
+	}
+	if (count > 1)
+		return false;
+	count = 0;
 	for(int i = 0; i < size; i++)
 	{
 		if (str[i] == '.' || str[i] == 'f')
@@ -205,9 +219,10 @@ bool ScalarConverter::isDouble(std::string str)
 		return false;
 	for (i = 0; i < size; i++)
 	{
-		if (isdigit(str[i]) == 0 && str[i] != '.')
+		if (isdigit(str[i]) == 0 && str[i] != '.'
+			&& str[i] != '+' && str[i] != '-')
 		{
-			log("vishhh");
+			log("double()-> vishhh");
 			return false;
 		}
 	}

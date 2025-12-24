@@ -1,0 +1,31 @@
+char:
+	a
+	f
+	abcf  (invalid)
+
+
+
+int:
+	42
+	-42
+	-+42   (invalid)
+
+
+float:
+	0.0f
+	4.2f
+	-4.2f
+	-+4.2f   (invalid)
+
+double:
+	0.0
+	-4.2
+	4.2
+	-+4.2   (invalid)
+
+
+
+
+
+obs:
+	-> pseudoliterals
