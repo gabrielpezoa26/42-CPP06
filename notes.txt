@@ -4,13 +4,12 @@
 convert()
 
 	-> converter pro tipo real (42 em string vira 42 int)
-	-> tratar pseudos
-
-
-
-ex00:
-	-> revisar/terminar parsing
-	-> dividir arquivos
+		->handleChar()
+			-> printar o char
+			-> conversao pra ascii
+		->handleInt()
+		->handleFloat()
+		->handleDouble()
 
 
 

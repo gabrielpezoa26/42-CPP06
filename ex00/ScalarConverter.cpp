@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 11:41:38 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:20:26 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ void ScalarConverter::convert(std::string to_convert)
 	if (DEBUG)
 		printDebug("ScalarConverter-> convert() method called");
 
-
 	std::string input_type;
 	input_type = getInputType(to_convert);
 	
-	mangoloko(input_type);
+	mangoloko(input_type, to_convert);
 }
 
 
@@ -75,7 +74,7 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 	return (type);
 }
 
-void ScalarConverter::mangoloko(std::string input_type)
+void ScalarConverter::mangoloko(std::string input_type, std::string to_convert)
 {
 	if (DEBUG)
 		printDebug("ScalarConverter-> mangoloko() method called");
@@ -88,23 +87,20 @@ void ScalarConverter::mangoloko(std::string input_type)
 			break;
 		i++;
 	}
+	std::cout << "DEBUG: type = " << input_type << std::endl;
 	switch(i)
 	{
 		case 0:
-			log("charrrrrrrrrr");
-			// convert_char(to_convert);
+			handleChar(to_convert);
 			break;
 		case 1:
-			log("intttttttt");
-			// convert_int(to_convert);
+			// handleInt(to_convert);
 			break;
 		case 2:
-			log("floatttttt");
-			// convert_float(to_convert);
+			// handleFloat(to_convert);
 			break;
 		case 3:
-			log("doubleeeee");
-			// convert_double(to_convert);
+			// handleDouble(to_convert);
 			break;
 		case 4:
 			log("impossibleeeeeee");
@@ -121,6 +117,8 @@ bool ScalarConverter::isChar(std::string str)
 	if (str.length() != 1)
 		return false;
 	if(isdigit(str[0]))
+		return false;
+	if (!isascii(str[0]))
 		return false;
 	if (!isprint(str[0]) || str[0] == 32)
 		return false;
@@ -265,4 +263,16 @@ bool ScalarConverter::isDouble(std::string str)
 		}
 	}
 	return true;
+}
+
+void ScalarConverter::handleChar(std::string to_convert)
+{
+	if (DEBUG)
+		printDebug("handleChar() called");
+
+	std::cout << "char: " << to_convert << std::endl;
+	std::cout << "int: " << static_cast<int>(to_convert[0]) << std::endl;
+	std::cout << "float: " << static_cast<float>(to_convert[0]) << ".0" << std::endl;
+	std::cout << "double: " << static_cast<double>(to_convert[0]) << ".0" << std::endl;
+
 }
