@@ -2,16 +2,17 @@
 
 
 isFloat()
-	-> verificar se eh pseudo-literal
-	-> termina com f
-	-> 1 sinal no começo
-	-> tudo dígitos e ponto decimal
+	-> verificar se eh pseudo-literal    ok
+	-> termina com f         ok
+	-> 1 sinal no começo        ok
+	-> tudo dígitos e ponto decimal   ok
+	-> contar os 'f'         ok
 
 
 
 isDouble()
 	-> pseudo
-	-> ponto decimal e ausencia de f
+	-> 1 ponto decimal e ausencia de f
 	-> 1 sinal no começo
 	-> ver se eh tudo dígito
 

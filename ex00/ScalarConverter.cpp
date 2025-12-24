@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/23 18:47:35 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/23 23:54:12 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 		type = "char";
 	else if (isInteger(to_detect))
 		type = "integer";
-	// else if (isFloat(to_detect))
-	// 	type = "float";
-	// else if (isDouble(to_detect))
-	// 	type = "double";
-	// else
-	// {
-	// 	logColor("vishhhhhhhhhhhhhh", RED);
-	// }
+	else if (isFloat(to_detect))
+		type = "float";
+	else if (isDouble(to_detect))
+		type = "double";
+	else
+	{
+		logColor("DEBUG: vishhhhhhhhhhhhhh", RED);
+	}
 	return (type);
 }
 
@@ -113,10 +113,10 @@ bool ScalarConverter::isInteger(std::string str)
 			return false;
 		i++;
 	}
-	error_number = 0;
+	errno = 0;
 	long value_in_long = 0;
 	value_in_long = std::strtol(str.c_str(), NULL, 10);
-	if (error_number == ERANGE)
+	if (errno == ERANGE)
 	{
 		if (DEBUG)
 			printDebug("overflow detected");
@@ -137,15 +137,82 @@ bool ScalarConverter::isFloat(std::string str)
 	if (DEBUG)
 		printDebug("Scalar-> isFloat() called");
 
-	std::cout << "DEBUG" << str << std::endl; //apagar dps
+	if (str.empty())
+		return false;
+
+	if (str == "-inff" || str == "+inff" || str == "nanf")
+	{
+		log("DEBUG: float pseudo literal");
+		return true;
+	}
+	int i = 0;
+	if (str[0] == '+' || str[0] == '-')
+	{
+		if (str.length() == 1)
+			return false;
+		i++;
+	}
+	int size = str.length();
+	if (str[size - 1] != 'f')
+		return false;
+	int count = 0;
+	for(int i = 0; i < size; i++)
+	{
+		if (str[i] == '.' || str[i] == 'f')
+			count++;
+	}
+	if (count != 2)
+		return false;
+	for (i = 0; i < size; i++)
+	{
+		if (isdigit(str[i]) == 0 && str[i] != '.' && str[i] != 'f')
+		{
+			log("vishhh");
+			return false;
+		}
+	}
 	return true;
 }
 
-// bool ScalarConverter::isDouble(std::string str)
-// {
-// 	if (DEBUG)
-// 		printDebug("Scalar-> isDouble() called");
-// }
+bool ScalarConverter::isDouble(std::string str)
+{
+	if (DEBUG)
+		printDebug("Scalar-> isDouble() called");
+
+	if (str.empty())
+		return false;
+
+	if (str == "-inf" || str == "+inf" || str == "nan")
+	{
+		log("DEBUG: double pseudo literal");
+		return true;
+	}
+	int i = 0;
+	if (str[0] == '+' || str[0] == '-')
+	{
+		if (str.length() == 1)
+			return false;
+		i++;
+	}
+	int count = 0;
+	int size = str.length();
+	for(int i = 0; i < size; i++)
+	{
+		if (str[i] == '.' || str[i] == 'f')
+			count++;
+	}
+	if (count != 1)
+		return false;
+	for (i = 0; i < size; i++)
+	{
+		if (isdigit(str[i]) == 0 && str[i] != '.')
+		{
+			log("vishhh");
+			return false;
+		}
+	}
+	return true;
+}
 
 
 

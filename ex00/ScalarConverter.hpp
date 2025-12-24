@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/23 18:44:34 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/23 23:47:58 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class ScalarConverter
 		static bool isChar(std::string str);
 		static bool isInteger(std::string str);
 		static bool isFloat(std::string str);
-		// static bool isDouble(std::string str);
+		static bool isDouble(std::string str);
 
 
 		/* ------- Canonical form -------*/
