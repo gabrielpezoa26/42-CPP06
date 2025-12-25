@@ -1,9 +1,11 @@
-24/12/25
+25/12/25
 
+ex00:
+	->tratar pseudoliterals  ok
 
-tratar zeross
-	0.0f
-	0.0
+	-> refactor*
+
+	-> tirar msgs d debug
 
 
 links:

@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 22:23:34 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/25 15:25:27 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ class ScalarConverter
 		static bool isInteger(std::string str);
 		static bool isFloat(std::string str);
 		static bool isDouble(std::string str);
+		static bool isPseudo(std::string str);
 
 
 		/* ------- conversion methods -------*/
@@ -57,7 +58,7 @@ class ScalarConverter
 		static void handleInt(std::string to_convert);
 		static void handleFloat(std::string to_convert);
 		static void handleDouble(std::string to_convert);
-		static void handle_pseudos(std::string to_convert);
+		static void handlePseudo(std::string to_convert);
 		static void handle_impossible();
 
 

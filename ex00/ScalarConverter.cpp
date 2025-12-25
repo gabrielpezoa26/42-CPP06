@@ -6,41 +6,13 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 22:41:16 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/25 16:05:53 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-/* ------- Canonical form -------*/
-ScalarConverter::ScalarConverter()
-{
-	if (DEBUG)
-		printDebug("ScalarConverter-> Default constructor called");
-}
-
-ScalarConverter::ScalarConverter(const ScalarConverter& other)
-{
-	(void)other;
-	return ;
-}
-
-ScalarConverter	&ScalarConverter::operator=(const ScalarConverter& other)
-{
-	(void)other;
-	return (*this);
-}
-
-ScalarConverter::~ScalarConverter()
-{
-	if (DEBUG)
-		printDebug("ScalarConverter-> Default destructor called");
-}
-
-
-
-
-/* ------- special methods -------*/
+/* ------- special method -------*/
 void ScalarConverter::convert(std::string to_convert)
 {
 	if (DEBUG)
@@ -48,11 +20,8 @@ void ScalarConverter::convert(std::string to_convert)
 
 	std::string input_type;
 	input_type = getInputType(to_convert);
-	
 	convert_and_print(input_type, to_convert);
 }
-
-
 
 /* ------- "main" methods -------*/
 std::string ScalarConverter::getInputType(std::string to_detect)
@@ -61,7 +30,9 @@ std::string ScalarConverter::getInputType(std::string to_detect)
 		printDebug("ScalarConverter-> getInputType() method called");
 
 	std::string type;
-	if (isChar(to_detect))
+	if (isPseudo(to_detect))
+		type = "pseudo";
+	else if (isChar(to_detect))
 		type = "char";
 	else if (isInteger(to_detect))
 		type = "int";
@@ -79,9 +50,9 @@ void ScalarConverter::convert_and_print(std::string input_type, std::string to_c
 	if (DEBUG)
 		printDebug("ScalarConverter-> convert_and_print() method called");
 
-	std::string types_array[5] = {"char", "int", "float", "double", "impossible"};
+	std::string types_array[] = {"pseudo", "char", "int", "float", "double", "impossible"};
 	int i = 0;
-	for(i = 0; i < 5; i++)
+	for(i = 0; i < 6; i++)
 	{
 		if (types_array[i] == input_type) 
 			break;
@@ -91,16 +62,18 @@ void ScalarConverter::convert_and_print(std::string input_type, std::string to_c
 	std::cout << std::fixed << std::setprecision(1);
 	switch(i)
 	{
-		case 0: handleChar(to_convert); break;
-		case 1: handleInt(to_convert); break;
-		case 2: handleFloat(to_convert); break;
-		case 3: handleDouble(to_convert); break;
-		case 4: handle_impossible(); break;
+		case 0: handlePseudo(to_convert); break;
+		case 1: handleChar(to_convert); break;
+		case 2: handleInt(to_convert); break;
+		case 3: handleFloat(to_convert); break;
+		case 4: handleDouble(to_convert); break;
+		case 5: handle_impossible(); break;
 	}
 }
 
 
-/* ------- auxiliary methods -------*/
+
+/* ------- get-type methods -------*/
 bool ScalarConverter::isChar(std::string str)
 {
 	if (DEBUG)
@@ -113,7 +86,7 @@ bool ScalarConverter::isChar(std::string str)
 	return true;
 }
 
-// mayyyybe should refactor this
+	// mayyyybe should refactor this
 bool ScalarConverter::isInteger(std::string str)
 {
 	if (DEBUG)
@@ -154,7 +127,7 @@ bool ScalarConverter::isInteger(std::string str)
 	return true;
 }
 
-// also maybe should refactor this
+	// also maybe should refactor this
 bool ScalarConverter::isFloat(std::string str)
 {
 	if (DEBUG)
@@ -163,11 +136,11 @@ bool ScalarConverter::isFloat(std::string str)
 	if (str.empty())
 		return false;
 
-	if (str == "-inff" || str == "+inff" || str == "nanf" || str == "inff")
-	{
-		log("DEBUG: float pseudo literal");
-		return true;
-	}
+	// if (str == "-inff" || str == "+inff" || str == "nanf" || str == "inff")
+	// {
+	// 	log("DEBUG: float pseudo literal");
+	// 	return true;
+	// }
 	int i = 0;
 	if (str[0] == '+' || str[0] == '-')
 	{
@@ -214,11 +187,11 @@ bool ScalarConverter::isDouble(std::string str)
 
 	if (str.empty())
 		return false;
-	if (str == "-inf" || str == "+inf" || str == "nan" || str == "inf")
-	{
-		log("DEBUG: double pseudo literal");
-		return true;
-	}
+	// if (str == "-inf" || str == "+inf" || str == "nan" || str == "inf")
+	// {
+	// 	log("DEBUG: double pseudo literal");
+	// 	return true;
+	// }
 	int i = 0;
 	if (str[0] == '+' || str[0] == '-')
 	{
@@ -255,6 +228,20 @@ bool ScalarConverter::isDouble(std::string str)
 	return true;
 }
 
+bool ScalarConverter::isPseudo(std::string str)
+{
+	std::string array[] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+	for(int i = 0; i < 6; i++)
+	{
+		if (array[i] == str)
+			return true;
+	}
+	return false;
+}
+
+
+
+/* ------- conversion methods -------*/
 void ScalarConverter::handleChar(std::string to_convert)
 {
 	if (DEBUG)
@@ -323,6 +310,31 @@ void ScalarConverter::handleDouble(std::string to_convert)
 	std::cout << "double: " << static_cast<double>(value) << std::endl;
 }
 
+void ScalarConverter::handlePseudo(std::string to_convert)
+{
+	if (DEBUG)
+		printDebug("handlePseudo() called");
+
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+
+	if (to_convert == "+inff" || to_convert == "inff" || to_convert == "-inff")
+	{
+		std::cout << "float: " << to_convert << std::endl;
+		std::cout << "double: " << to_convert.substr(0, to_convert.size() - 1) << std::endl;
+	}
+	else if (to_convert == "+inf" || to_convert == "inf" || to_convert == "-inf")
+	{
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: " << to_convert << std::endl;
+	}
+	else
+	{
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+	}
+}
+
 void ScalarConverter::handle_impossible()
 {
 	if (DEBUG)
@@ -332,4 +344,31 @@ void ScalarConverter::handle_impossible()
 	logColor("int: impossible", RED);
 	logColor("float: impossible", RED);
 	logColor("double: impossible", RED);
+}
+
+
+
+/* ------- Canonical form -------*/
+ScalarConverter::ScalarConverter()
+{
+	if (DEBUG)
+		printDebug("ScalarConverter-> Default constructor called");
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& other)
+{
+	(void)other;
+	return ;
+}
+
+ScalarConverter	&ScalarConverter::operator=(const ScalarConverter& other)
+{
+	(void)other;
+	return (*this);
+}
+
+ScalarConverter::~ScalarConverter()
+{
+	if (DEBUG)
+		printDebug("ScalarConverter-> Default destructor called");
 }
