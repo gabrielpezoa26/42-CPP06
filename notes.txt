@@ -1,12 +1,9 @@
 24/12/25
 
 
-convert()
-
-	-> converter pro tipo real (42 em string vira 42 int)
-		->handleFloat()
-		->handleDouble()
-
+tratar zeross
+	0.0f
+	0.0
 
 
 links:

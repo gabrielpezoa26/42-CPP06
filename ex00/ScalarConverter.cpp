@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 17:48:18 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 22:41:16 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,14 @@ void ScalarConverter::convert_and_print(std::string input_type, std::string to_c
 			break;
 	}
 	std::cout << "DEBUG: type = " << input_type << '\n' << std::endl;
+	std::cout << "DEBUG: input = " << to_convert << '\n' << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
 	switch(i)
 	{
 		case 0: handleChar(to_convert); break;
 		case 1: handleInt(to_convert); break;
-		case 2: // handleFloat(to_convert); break;
-		case 3: // handleDouble(to_convert); break;
+		case 2: handleFloat(to_convert); break;
+		case 3: handleDouble(to_convert); break;
 		case 4: handle_impossible(); break;
 	}
 }
@@ -204,7 +206,7 @@ bool ScalarConverter::isFloat(std::string str)
 	return true;
 }
 
-// also should refactor this
+// also shooould refactor this
 bool ScalarConverter::isDouble(std::string str)
 {
 	if (DEBUG)
@@ -212,7 +214,6 @@ bool ScalarConverter::isDouble(std::string str)
 
 	if (str.empty())
 		return false;
-
 	if (str == "-inf" || str == "+inf" || str == "nan" || str == "inf")
 	{
 		log("DEBUG: double pseudo literal");
@@ -259,10 +260,10 @@ void ScalarConverter::handleChar(std::string to_convert)
 	if (DEBUG)
 		printDebug("handleChar() called");
 
-	std::cout << "char: " << to_convert << std::endl;
+	std::cout << "char: '" << to_convert << "'" << std::endl;
 	std::cout << "int: " << static_cast<int>(to_convert[0]) << std::endl;
-	std::cout << "float: " << static_cast<float>(to_convert[0]) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(to_convert[0]) << ".0" << std::endl;
+	std::cout << "float: " << static_cast<float>(to_convert[0]) << std::endl;
+	std::cout << "double: " << static_cast<double>(to_convert[0]) << std::endl;
 
 }
 
@@ -271,16 +272,55 @@ void ScalarConverter::handleInt(std::string to_convert)
 	if (DEBUG)
 		printDebug("handleInt() called");
 
-	int value_int = atoi(to_convert.c_str());
-	if (value_int < INT_MIN || value_int > INT_MAX)
+	int value = atoi(to_convert.c_str());
+	if (value < INT_MIN || value > INT_MAX)
 		std::cout << "char: " << "impossible" << std::endl;
-	if (isprint(static_cast<unsigned char>(value_int)))
-		std::cout << "char: " << static_cast<char>(value_int) << std::endl;
+	if (isprint(static_cast<unsigned char>(value)))
+		std::cout << "char: '" << static_cast<char>(value) << "'"<< std::endl;
 	else
-		std::cout << "char: " << "not printable :(" << std::endl;
-	std::cout << "int: " << value_int << std::endl;
-	std::cout << "float: " << static_cast<float>(value_int) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(value_int) << ".0" << std::endl;
+		std::cout << "char: " << "Non displayable" << std::endl;
+	std::cout << "int: " << value << std::endl;
+	std::cout << "float: " << static_cast<float>(value) << std::endl;
+	std::cout << "double: " << static_cast<double>(value) << std::endl;
+}
+
+void ScalarConverter::handleFloat(std::string to_convert)
+{
+	float value = atof(to_convert.c_str());
+
+	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max())
+		std::cout << "char: impossible" << std::endl;
+	else if (isprint(static_cast<unsigned char>(value)))
+		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+	else
+		std::cout << "char: " << "Non displayable" << std::endl;
+	if(value < std::numeric_limits<int>::max() && value > std::numeric_limits<int>::min())
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
+	else
+		std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << value << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(value) << std::endl;
+}
+
+void ScalarConverter::handleDouble(std::string to_convert)
+{
+	double	value = atof(to_convert.c_str());
+	
+	if (value < std::numeric_limits<char>::min() || value > std::numeric_limits<char>::max())
+		std::cout << "char: impossible" << std::endl;
+	else if (isprint(static_cast<unsigned char>(value)))
+		std::cout << "char: " << static_cast<char>(value) << std::endl;
+	else
+		std::cout << "char: " << "Non displayable" << std::endl;
+	if(value < std::numeric_limits<int>::max() && value > std::numeric_limits<int>::min())
+		std::cout << "int: " << static_cast<int>(value) << std::endl;
+	else
+		std::cout << "int: impossible" << std::endl;
+	if (value < std::numeric_limits<float>::max() && value > -std::numeric_limits<float>::max())
+		std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
+	else
+		std::cout << "float: impossible" << std::endl;
+	std::cout << "double: " << static_cast<double>(value) << std::endl;
 }
 
 void ScalarConverter::handle_impossible()

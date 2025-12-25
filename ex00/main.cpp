@@ -6,17 +6,14 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:35 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 17:28:12 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 22:14:27 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-#include <stdio.h>
-
 int main(int ac, char **av)
 {
-	printf("%d\n", ac);
 	if (ac != 2)
 	{
 		logColor("Error! Invalid argument count :((", RED);

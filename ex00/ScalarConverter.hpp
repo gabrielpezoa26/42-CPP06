@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/24 17:49:58 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/24 22:23:34 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cerrno>
+#include <limits>
 #include <limits.h>
+#include <iomanip>
 #include "utils.hpp"
 
 class ScalarConverter
