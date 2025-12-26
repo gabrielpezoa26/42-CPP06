@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/25 18:41:38 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/25 23:33:50 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,9 @@ bool ScalarConverter::isFloat(std::string str)
 		return false;
 	for (i = 0; i < size; i++)
 	{
+		if ((str[i] == '-' || str[i] == '+') && i != 0)
+			return false;
+
 		if (isdigit(str[i]) == 0 && str[i] != '.' 
 			&& str[i] != 'f' && str[i] != '+' && str[i] != '-')
 		{
@@ -197,6 +200,9 @@ bool ScalarConverter::isDouble(std::string str)
 		return false;
 	for (i = 0; i < size; i++)
 	{
+		if ((str[i] == '-' || str[i] == '+') && i != 0)
+			return false;
+
 		if (isdigit(str[i]) == 0 && str[i] != '.' && str[i] != '+' && str[i] != '-')
 			return false;
 	}
