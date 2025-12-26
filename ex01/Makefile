@@ -1,5 +1,5 @@
 NAME = serializer
-OBJECTS = objects/main.o objects/Serializer.o objects/Data.o
+OBJECTS = objects/main.o objects/Serializer.o objects/Data.o objects/utils.o
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -24,6 +24,9 @@ objects/Serializer.o: Serializer.cpp
 objects/Data.o: Data.cpp
 	$(CC) $(CFLAGS) -c Data.cpp -o objects/Data.o
 
+objects/utils.o: utils.cpp
+	$(CC) $(CFLAGS) -c utils.cpp -o objects/utils.o
+
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -32,17 +35,8 @@ fclean: clean
 	rm -f $(NAME)
 
 
-#for debugging
-char:all
-	./$(NAME) c
-int:all
-	./$(NAME) 42
-float:all
-	./$(NAME) 0.0f
-double:all
-	./$(NAME) 4.2
-
-
+run: all
+	./$(NAME)
 
 val: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)

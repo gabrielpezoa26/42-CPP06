@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 16:02:21 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/26 06:05:05 by gcesar-n         ###   ########.fr       */
+/*   Created: 2025/12/26 05:41:10 by gcesar-n          #+#    #+#             */
+/*   Updated: 2025/12/26 05:43:16 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
-#include "Data.hpp"
 #include "utils.hpp"
 
-int main()
+void log(std::string message)
 {
-	Data example("beta", 1);
-	Data example2("alfa", 999999999);
+	std::cout << message << std::endl;
+}
 
-	std::cout << "name = " << example.getName() << std::endl;
-	std::cout << "aura = " << example.getAura() << std::endl << std::endl;
-
-	std::cout << "name = " << example2.getName() << std::endl;
-	std::cout << "aura = " << example2.getAura() << std::endl;
-
-
-	return 0;
+void printDebug(std::string message)
+{
+	std::cout << PURPLE << message << RESET << std::endl;
 }

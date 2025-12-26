@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/25 16:02:21 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/26 06:05:05 by gcesar-n         ###   ########.fr       */
+/*   Created: 2025/12/26 05:41:45 by gcesar-n          #+#    #+#             */
+/*   Updated: 2025/12/26 05:53:28 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Serializer.hpp"
-#include "Data.hpp"
-#include "utils.hpp"
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
-int main()
-{
-	Data example("beta", 1);
-	Data example2("alfa", 999999999);
+#define RED "\033[31m"
+#define PURPLE "\033[35m"
+#define RESET "\033[0m"
 
-	std::cout << "name = " << example.getName() << std::endl;
-	std::cout << "aura = " << example.getAura() << std::endl << std::endl;
+#include <iostream>
+#define DEBUG true
+void log(std::string message);
+void printDebug(std::string message);
 
-	std::cout << "name = " << example2.getName() << std::endl;
-	std::cout << "aura = " << example2.getAura() << std::endl;
-
-
-	return 0;
-}
+#endif

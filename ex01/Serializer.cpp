@@ -6,43 +6,47 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 16:02:27 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/26 00:00:57 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/26 06:13:59 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Serializer.hpp"
+#include "utils.hpp"
 
 Serializer::Serializer()
 {
 	if (DEBUG)
-		logDebug("Serializer-> Default constructor called");
+		printDebug("Serializer-> Default constructor called");
 }
 
 Serializer::Serializer(const Serializer& s)
 {
 	if (DEBUG)
-		logDebug("Serializer-> Copy constructor called");
+		printDebug("Serializer-> Copy constructor called");
 	(void)s;
 }
 
-Serializer &Serializer::operator=(const Serializer& s)
-{
-	(void)s;
-	return(*this);
-}
+// Serializer &Serializer::operator=(const Serializer& s)
+// {
+// 	(void)s;
+// 	return(*this);
+// }
 
 Serializer::~Serializer()
 {
 	if (DEBUG)
-		logDebug("Serializer-> Default destructor called");
+		printDebug("Serializer-> Default destructor called");
 }
 
-void log(std::string message)
-{
-	std::cout << message << std::endl;
-}
+/*------- special methods ------- */
+// uintptr_t Serializer::serialize(Data* ptr)
+// {
+// 	if (DEBUG)
+// 		printDebug("serialize() method called");
+// }
 
-void logDebug(std::string message)
-{
-	std::cout << PURPLE << message << RESET << std::endl;
-}
+// Data* Serializer::deserialize(uintptr_t raw)
+// {
+// 	if (DEBUG)
+// 		printDebug("deserialize() method called");
+// }
