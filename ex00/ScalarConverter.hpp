@@ -6,21 +6,18 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:03:39 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/25 15:25:27 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/25 21:44:56 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALAR_CONVERTER_HPP
 #define SCALAR_CONVERTER_HPP
 
-#define GREEN "\033[32m"
 #define RED "\033[31m"
-#define BLUE "\033[34m"
 #define PURPLE "\033[35m"
-#define YELLOW "\033[33m"
 #define RESET "\033[0m"
 
-#define DEBUG false
+#define DEBUG true
 
 #include <iostream>
 #include <stdlib.h>
@@ -41,7 +38,7 @@ class ScalarConverter
 
 
 		/* ------- "main" methods -------*/
-		static std::string getInputType(std::string to_detect);
+		static std::string getInputType(std::string to_identify);
 		static void convert_and_print(std::string input_type, std::string to_convert);
 
 
@@ -64,7 +61,7 @@ class ScalarConverter
 
 	public:
 		/* ------- special method -------*/
-		static void convert(std::string to_convert);
+		static void convert(std::string input);
 };
 
 #endif

@@ -1,11 +1,15 @@
 25/12/25
 
 ex00:
-	->tratar pseudoliterals  ok
+	-> detalhes finais
 
-	-> refactor*
 
-	-> tirar msgs d debug
+
+ex01:
+	-> estrutura de classes
+
+
+
 
 
 links:
