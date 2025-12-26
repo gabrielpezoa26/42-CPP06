@@ -6,8 +6,10 @@ ex00:
 
 
 ex01:
-	-> estrutura de classes
+	-> estrutura da classe Serializer
+	-> .cpp serializer
 
+	->main()
 
 
 

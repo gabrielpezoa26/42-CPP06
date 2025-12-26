@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 16:02:47 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/26 06:14:58 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/26 09:24:35 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ Data::~Data()
 	if (DEBUG)
 		printDebug("Data-> Default destructor called");
 }
+
 
 /* ------- getters ------- */
 const std::string Data::getName() const
