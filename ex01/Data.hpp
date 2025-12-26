@@ -6,7 +6,18 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 16:02:42 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/25 16:02:42 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/26 00:24:51 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DATA_HPP
+#define DATA_HPP
+
+#include <iostream>
+
+class Data
+{
+
+};
+
+#endif

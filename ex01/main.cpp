@@ -6,7 +6,14 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 16:02:21 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/25 16:02:21 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/26 00:02:07 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Serializer.hpp"
+
+int main()
+{
+	log("program compiled");
+	return 0;
+}

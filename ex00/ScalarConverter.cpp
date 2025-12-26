@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 20:06:31 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/25 23:33:50 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/25 23:59:20 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,10 +159,7 @@ bool ScalarConverter::isFloat(std::string str)
 
 		if (isdigit(str[i]) == 0 && str[i] != '.' 
 			&& str[i] != 'f' && str[i] != '+' && str[i] != '-')
-		{
-			log("float()-> vishhh deu ruim");
 			return false;
-		}
 	}
 	return true;
 }
@@ -339,6 +336,8 @@ ScalarConverter::ScalarConverter()
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)
 {
+	if (DEBUG)
+		printDebug("Copy constructor called");
 	(void)other;
 	return ;
 }
