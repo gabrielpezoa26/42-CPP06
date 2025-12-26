@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 16:02:27 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/26 09:24:17 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/26 10:42:12 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ Serializer::~Serializer()
 /*------- special methods ------- */
 uintptr_t Serializer::serialize(Data *ptr)
 {
+	if (DEBUG)
+		printDebug("serialize() called");
 	uintptr_t raw = reinterpret_cast<uintptr_t>(ptr);
 	return raw;
 }
 
 Data* Serializer::deserialize(uintptr_t raw)
 {
+	if (DEBUG)
+		printDebug("deserialize() called");
 	Data* ptr = reinterpret_cast<Data*>(raw);
 	return ptr;
 }
