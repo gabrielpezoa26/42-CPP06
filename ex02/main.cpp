@@ -6,18 +6,16 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 06:18:28 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/27 18:15:34 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/27 19:33:06 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
 
 int main()
 {
-	std::cout << "program compiled";
+	std::cout << "program compiled" << std::endl;
+	std::cout << generate() << std::endl;
 	return 0;
 }
 /*

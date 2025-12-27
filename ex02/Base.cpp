@@ -6,11 +6,14 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:49:32 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/27 18:32:42 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/27 19:35:10 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base::~Base()
 {
@@ -20,17 +23,33 @@ Base::~Base()
 
 Base* generate(void)
 {
-	Base* result = NULL;
-
 	if(DEBUG)
 		log("generate() called");
-	return result;
+
+	Base* instance = NULL;
+	static bool seed_flag = false;
+
+	if (!seed_flag)
+	{
+		srand(time(NULL));
+		seed_flag = true;
+	}
+	int random_value = rand() % 3;
+	if (random_value == 0)
+		A instance;
+	else if (random_value == 1)
+		B instance;
+	else if (random_value == 2)
+		C instance;
+	return instance;
 }
 
 // void identify(Base* p)
 // {
 // 	if(DEBUG)
 // 		log("identify1() called");
+
+	
 // }
 
 // void identify(Base& p)
