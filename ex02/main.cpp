@@ -6,10 +6,20 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 06:18:28 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/12/26 09:23:52 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:15:34 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
+
+int main()
+{
+	std::cout << "program compiled";
+	return 0;
+}
 /*
 	Turn-in directory: ex02/
 	Files to turn in: Makefile, *.cpp, *.{h, hpp}
